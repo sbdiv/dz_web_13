@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Quotes</title>
+</head>
+<body>
+    <h1>Quotes</h1>
+    <ul>
+        {% for quote in quotes %}
+            <li>
+                <blockquote>{{ quote.text }}</blockquote>
+                <p>Author: <a href="{% url 'quotesapp:author_detail' quote.author.id %}">{{ quote.author.fullname }}</a></p>
+                <p>Tags: 
+                    {% for tag in quote.tags.all %}
+                        <span>{{ tag.name }}</span>
+                    {% endfor %}
+                </p>
+            </li>
+        {% endfor %}
+    </ul>
+</body>
+</html>
